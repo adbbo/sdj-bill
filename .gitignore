@@ -1,0 +1,17 @@
+target/
+!.mvn/wrapper/maven-wrapper.jar
+.idea/
+*.iml
+.classpath
+.project
+.settings/
+.vscode/
+node_modules/
+dist/
+.DS_Store
+*.log
+backend/src/main/resources/static/
+.env
+.env.local
+*.swp
+.mvn/wrapper/maven-wrapper.jar

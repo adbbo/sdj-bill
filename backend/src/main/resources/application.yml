@@ -1,0 +1,38 @@
+server:
+  port: ${SERVER_PORT:8080}
+  servlet:
+    session:
+      timeout: 12h
+      cookie:
+        name: SDJSESSION
+        http-only: true
+        same-site: lax
+
+spring:
+  application:
+    name: sdj-support
+  datasource:
+    url: ${SPRING_DATASOURCE_URL:jdbc:mysql://127.0.0.1:3306/sdj_support?useUnicode=true&characterEncoding=utf8&connectionCollation=utf8mb4_unicode_ci&serverTimezone=Asia/Shanghai}
+    username: ${SPRING_DATASOURCE_USERNAME:sdj}
+    password: ${SPRING_DATASOURCE_PASSWORD:sdj_pass_2026}
+    hikari:
+      maximum-pool-size: 10
+      initialization-fail-timeout: 60000
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        jdbc:
+          time_zone: Asia/Shanghai
+  flyway:
+    enabled: true
+    encoding: UTF-8
+  jackson:
+    time-zone: Asia/Shanghai
+    serialization:
+      write-dates-as-timestamps: false
+
+app:
+  seed: ${APP_SEED:true}
