@@ -82,7 +82,7 @@ async function onLogout() {
   gap: 36px;
 }
 .side-brand { display: flex; gap: 14px; align-items: center; }
-.side-brand .brand-name { font-size: 18px; }
+.side-brand .brand-name { font-size: 17px; letter-spacing: 0.08em; white-space: nowrap; }
 nav { display: flex; flex-direction: column; gap: 8px; }
 nav a {
   padding: 12px 14px;
