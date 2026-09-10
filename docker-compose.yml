@@ -1,0 +1,37 @@
+services:
+  mysql:
+    image: mysql:8.4
+    container_name: sdj-mysql
+    environment:
+      MYSQL_DATABASE: sdj_support
+      MYSQL_USER: sdj
+      MYSQL_PASSWORD: sdj_pass_2026
+      MYSQL_ROOT_PASSWORD: sdj_root_2026
+      TZ: Asia/Shanghai
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci --default-time-zone=+08:00
+    volumes:
+      - sdj_mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-usdj", "-psdj_pass_2026"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+    restart: unless-stopped
+
+  app:
+    build: .
+    container_name: sdj-support
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/sdj_support?useUnicode=true&characterEncoding=utf8&connectionCollation=utf8mb4_unicode_ci&serverTimezone=Asia/Shanghai
+      SPRING_DATASOURCE_USERNAME: sdj
+      SPRING_DATASOURCE_PASSWORD: sdj_pass_2026
+      TZ: Asia/Shanghai
+    depends_on:
+      mysql:
+        condition: service_healthy
+    restart: unless-stopped
+
+volumes:
+  sdj_mysql_data:
