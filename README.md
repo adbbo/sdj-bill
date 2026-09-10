@@ -19,7 +19,7 @@
 docker compose up -d --build
 ```
 
-浏览器访问：**http://localhost:8080**
+浏览器访问：**http://localhost:8081**（云服务器为 **http://IP:8081**）
 
 停止：
 
@@ -89,7 +89,7 @@ mvn spring-boot:run
 1. 在服务器安装 Docker，将本仓库同步到目标目录。
 2. 按需修改 `docker-compose.yml` 中的数据库密码与端口映射。
 3. 执行 `docker compose up -d --build`。
-4. 将 8080 置于 HTTPS 反向代理（Nginx / 网关）之后，再对合作机构开放。
+4. 将 8081 置于 HTTPS 反向代理（Nginx / 网关）之后，再对合作机构开放。
 5. 生产环境请立即修改演示账号密码，并关闭或替换种子数据（`APP_SEED=false` 可跳过重复种子；仅在用户表为空时写入）。
 
 应用健康检查：`GET /api/health`。
